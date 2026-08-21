@@ -1,0 +1,378 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titling}
+
+% -----------------------------------------------------
+% UCS503P Project Proposal formatting
+% -----------------------------------------------------
+
+% Variable: Lab Instructor
+\makeatletter
+\newcommand{\BvrSetLabInstructor}[1]{%
+  \gdef\Bvr@LabInstructor{#1}}
+\newcommand{\Bvr@LabInstructor}{Ms. Nisha Thakur}
+\newcommand{\BvrLabInstructorValue}{\Bvr@LabInstructor}
+\makeatother
+
+% Title and subtitle formatting
+\pretitle{\begin{center}\bfseries\fontsize{18bp}{18bp}\selectfont}
+\makeatletter
+\newcommand{\BvrSubtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip 0.5em}%
+}
+\makeatother
+
+% Hints in section titles
+\newcommand{\BvrHint}[1]{%
+  {\normalfont\normalsize\itshape\hfill #1}}
+
+% -----------------------------------------------------
+
+\title{VR Everywhere - Virtual Travel Experience}
+
+\BvrSetLabInstructor{Ms. Nisha Thakur}
+
+\BvrSubtitle{%
+  Project Proposal for UCS503P \\
+  Submitted to: Ms. Nisha Thakur \\
+  \bfseries Thapar Institute of Engineering and Technology%
+}
+
+\author{
+  Abishek Garg, CSE
+  {Roll No: \texttt{1024170428}}
+  \and
+  Deepak, CSE
+  {Roll No: \texttt{1024170432}}
+  \and
+  Harnoor Kaur Dran, CSE
+  {Roll No: \texttt{1024170436}}
+}
+
+\date{July -- December 2026}
+
+\begin{document}
+\maketitle
+
+\section{Higher-order goal%
+  \BvrHint{\ldots immersive travel experience}}
+
+This project aims to make travel exploration more accessible by allowing users to virtually
+experience tourist destinations without physically travelling to them. While the broader goal is to
+explore the potential of virtual reality in tourism and education, the immediate engineering
+objective is to develop a simple, deployable VR-based travel application that allows users to explore
+selected destinations through immersive environments.
+
+The project will focus on providing an easy-to-use interface, destination information, interactive
+exploration, and basic VR navigation rather than attempting to create a complete commercial
+tourism platform.
+
+\section{Time-to-value%
+  \BvrHint{\ldots primary heuristic}}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item We will deliver meaningful increments quickly by first implementing the core workflow:
+    selecting a destination $\rightarrow$ viewing its information $\rightarrow$ starting a VR tour
+    $\rightarrow$ exploring the environment.
+    \item We will prioritize a small number of high-quality destinations over attempting to build a large virtual world.
+    \item Development will follow short weekly iterations, with each iteration producing a demonstrable feature or improvement.
+    \item Testing will be performed continuously during development rather than being postponed until the final stage.
+    \item Success will initially be defined by whether a user can successfully discover a destination
+    and complete a basic VR tour, followed by improvements based on user feedback.
+\end{itemize}
+
+\section{Problem Statement}
+
+Travelling to tourist destinations is not always possible for everyone due to cost, time constraints,
+physical limitations, geographical distance, or other circumstances.
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Accessibility:} People who cannot physically travel may have limited opportunities to experience tourist destinations.
+    \item \textbf{Cost:} International and long-distance travel can be expensive.
+    \item \textbf{Time constraints:} Students and working individuals may not have sufficient time to visit multiple destinations.
+    \item \textbf{Limited pre-travel experience:} Traditional travel websites provide photographs and videos, but they do not provide an immersive experience of the location.
+    \item \textbf{Information fragmentation:} Information about a destination, its history, attractions, and visual experience is often spread across multiple platforms.
+\end{itemize}
+
+Virtual Reality provides an opportunity to address these limitations by allowing users to experience
+selected tourist destinations in an immersive environment.
+
+\section{Proposed Solution%
+  \BvrHint{\ldots Software Proposition}}
+
+\subsection{Overview}
+
+Build a VR-based ``Virtual Travel Experience'' system with the following components:
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Destination explorer:} Users can browse and search for available tourist destinations.
+    \item \textbf{Destination information:} Users can view basic information such as location, description, historical facts, and important attractions.
+    \item \textbf{VR tour:} Users can enter a virtual environment and explore a selected destination.
+    \item \textbf{Interactive hotspots:} Important locations within the VR environment can be selected to display additional information.
+    \item \textbf{Audio guide:} Basic audio narration can be provided for selected attractions.
+    \item \textbf{Favorites:} Users can save destinations for later exploration.
+    \item \textbf{User profile:} Users can view their saved and previously explored destinations.
+\end{itemize}
+
+The initial implementation will contain a limited number of destinations to keep the project
+achievable within the three-month development period.
+
+\subsection{Core workflow}
+
+\begin{enumerate}[leftmargin=0.7cm]
+    \item User opens the application and logs in or continues as a user.
+    \item User views available destinations on the Home/Explore screen.
+    \item User selects a destination.
+    \item The system displays destination information and provides a Start VR Tour option.
+    \item User enters the VR environment and explores the destination.
+    \item User can interact with selected hotspots to view information or listen to an audio guide.
+    \item User exits the tour and can save the destination to Favorites.
+\end{enumerate}
+
+This keeps the central workflow simple and demonstrable.
+
+\subsection{Operational constraints for an educational project}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item The application will initially support a small number of destinations, approximately 3--5, rather than attempting to model the entire world.
+    \item VR environments will use available 360$^\circ$ images/assets or lightweight 3D environments instead of developing highly detailed environments from scratch.
+    \item The application should remain usable on supported VR hardware and provide a basic non-VR/desktop mode where feasible for demonstration.
+    \item Advanced features such as multiplayer VR, live tour guides, complex AI systems, and real-time environmental simulation are outside the initial scope.
+    \item The system will use commonly available development tools and cloud hosting services.
+\end{itemize}
+
+\section{Solution Approach%
+  \BvrHint{\ldots Engineering focus}}
+
+This is an engineering course project, so the primary focus will be on system design, VR interaction,
+usability, integration, testing, and deployment, rather than developing new VR algorithms or
+conducting research into virtual reality.
+
+\subsection{VR environment and interaction%
+  \BvrHint{\ldots practical implementation}}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Basic VR navigation.
+    \item 360$^\circ$ environment viewing.
+    \item Interactive information hotspots.
+    \item Audio narration.
+    \item Simple VR menu.
+    \item Destination exit/return functionality.
+\end{itemize}
+
+The project will prioritize usability and stable interaction over highly complex graphical effects.
+
+\subsection{Application architecture%
+  \BvrHint{\ldots web-connected VR solution}}
+
+A typical architecture will consist of:
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{VR Client:} Unity-based application responsible for the VR environment, navigation, interaction, and user interface.
+    \item \textbf{Backend API:} Responsible for authentication, destination information, user preferences, favorites, and tour history.
+    \item \textbf{Database:} Stores users, destinations, hotspot information, favorites, and tour history.
+    \item \textbf{Cloud/Deployment Layer:} Hosts the backend and database and provides access to the application services.
+\end{itemize}
+
+The architecture separates the VR application from backend services so that destination information
+can be updated without modifying the complete application.
+
+\subsection{Development and deployment%
+  \BvrHint{\ldots fast delivery enabler}}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Use Git and GitHub for version control.
+    \item Automatically build and test the backend when changes are pushed, where CI/CD is introduced.
+    \item Run backend unit tests.
+    \item Maintain a consistent deployment process.
+    \item Package the VR application as a suitable build for the selected demonstration platform.
+\end{itemize}
+
+\section{Evaluation Criterion%
+  \BvrHint{\ldots measurable and attributable}}
+
+\subsection{Primary evaluation metric}
+
+\textbf{Tour Completion Rate:} Percentage of test users who can successfully select a destination,
+enter the VR tour, interact with a hotspot, and exit the tour without assistance.
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Target: At least 80\% of test users should successfully complete the workflow during user testing.
+\end{itemize}
+
+\subsection{Secondary evaluation metrics}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Usability:} Average user rating of the application interface on a 1--5 scale.
+    \item \textbf{Navigation success:} Percentage of users who can successfully navigate or interact within the VR environment.
+    \item \textbf{Performance:} Maintain a stable and comfortable VR experience on the selected hardware.
+    \item \textbf{Feature usage:} Number of users who interact with information hotspots or audio guides.
+    \item \textbf{Reliability:} Successful loading of destinations and VR environments during testing.
+\end{itemize}
+
+\subsection{Pilot validation plan%
+  \BvrHint{\ldots high-level}}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Recruit approximately 10--20 student users for testing.
+    \item Provide users with a simple task such as: ``Find the Taj Mahal, start the VR tour, explore the location, open an information hotspot, and exit the tour.''
+    \item Record whether users complete the task successfully.
+    \item Collect feedback using a short questionnaire.
+    \item Identify usability problems and improve the interface before final deployment.
+\end{itemize}
+
+\section{Scalability%
+  \BvrHint{\ldots with foresight}}
+
+\subsection{Scalable theoretically}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Store destination information in the database.
+    \item Use separate VR scenes/environments for destinations.
+    \item Separate the frontend/VR client and backend services.
+    \item Use indexed database queries for destination searches.
+    \item Keep backend APIs stateless where practical.
+\end{itemize}
+
+\subsection{Operationally deployable}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Cloud-hosted backend.
+    \item Managed relational database.
+    \item Version-controlled source code.
+    \item Repeatable deployment process.
+\end{itemize}
+
+This allows the initial 3--5 destinations to eventually grow into a larger virtual tourism catalogue.
+
+\section{Engine availability heuristic}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{VR/Game Engine:} Unity
+    \item \textbf{Programming Language:} C\#
+    \item \textbf{VR Framework:} OpenXR + XR Interaction Toolkit
+    \item \textbf{Backend:} Spring Boot
+    \item \textbf{Backend Language:} Java
+    \item \textbf{Database:} PostgreSQL
+    \item \textbf{Authentication:} Spring Security + JWT
+    \item \textbf{API:} REST API
+    \item \textbf{API Testing:} Postman
+    \item \textbf{Version Control:} Git + GitHub
+    \item \textbf{Deployment:} Render / Railway / similar cloud platform
+\end{itemize}
+
+These technologies allow the project to focus on VR interaction, application workflow, testing, and
+deployment rather than developing infrastructure from scratch.
+
+\section{Project scope and deliverables%
+  \BvrHint{\ldots iteration-friendly}}
+
+\subsection{Initial deliverable%
+  \BvrHint{\ldots first iteration}}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Basic application interface.
+    \item Home/Explore screen.
+    \item Destination listing.
+    \item Destination details page.
+    \item One working VR destination.
+    \item Basic VR navigation.
+    \item At least one interactive information hotspot.
+    \item Basic backend API.
+    \item Database containing destination information.
+    \item Git repository and basic testing.
+\end{itemize}
+
+\subsection{Subsequent deliverables}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item Additional VR destinations.
+    \item Search functionality.
+    \item Audio guide.
+    \item User profile.
+    \item Tour history.
+    \item Improved VR interface.
+    \item Backend integration.
+    \item System and user testing.
+    \item Performance optimization.
+\end{itemize}
+
+\section{Risks and mitigations}
+
+\begin{center}
+\begin{tabular}{p{0.31\textwidth} p{0.58\textwidth}}
+\textbf{Risk} & \textbf{Mitigation} \\ \hline
+VR hardware availability &
+Develop and test on the available VR device and maintain a desktop mode where feasible for demonstration. \\[4pt]
+
+Complexity of VR development &
+Limit the initial project to 3--5 destinations and basic interactions. \\[4pt]
+
+Performance issues &
+Use optimized 3D assets, appropriate texture sizes, and lightweight environments. \\[4pt]
+
+Limited development time &
+Follow weekly iterations and prioritize the core VR tour workflow. \\[4pt]
+
+Asset availability &
+Use appropriately licensed/free assets and 360$^\circ$ environments rather than attempting to create every asset from scratch. \\[4pt]
+
+User discomfort &
+Keep movement simple, provide comfortable navigation options, and test the application with users. \\[4pt]
+
+Deployment difficulties &
+Deploy backend services early rather than waiting until the final week.
+\end{tabular}
+\end{center}
+
+\section{Summary}
+
+This project proposes a deployable VR Travel Experience platform that allows users to explore
+selected tourist destinations through immersive virtual environments. The system will combine a
+simple destination discovery interface with VR tours, interactive hotspots, basic destination
+information, and user favorites.
+
+The project meets the course requirements by emphasizing rapid development, structured software
+engineering, measurable user evaluation, testing, and deployment. The initial scope is intentionally
+limited to a small number of destinations and essential VR interactions so that a functional and
+polished system can be completed within three months.
+
+The architecture will also allow additional destinations and features to be introduced in future
+iterations without redesigning the complete system.
+
+\section*{Technology Stack}
+
+\begin{center}
+\begin{tabular}{p{0.30\textwidth} p{0.55\textwidth}}
+\textbf{Component} & \textbf{Technology} \\ \hline
+VR Application & Unity \\
+Programming & C\# \\
+VR Framework & OpenXR + XR Interaction Toolkit \\
+Backend & Spring Boot \\
+Backend Language & Java \\
+Database & PostgreSQL \\
+Authentication & Spring Security + JWT \\
+API & REST API \\
+API Testing & Postman \\
+Version Control & Git + GitHub \\
+Deployment & Render / Railway / similar cloud platform
+\end{tabular}
+\end{center}
+
+\section*{Core User Interface}
+
+\begin{itemize}[leftmargin=0.7cm]
+    \item The main application navigation will contain five simple options:
+    \textbf{Home | Explore | VR Tours | Favorites | Profile}
+    \item Inside the VR tour, a lightweight floating menu will provide:
+    \textbf{Map | Information | Audio | Settings | Exit Tour}
+\end{itemize}
+
+\end{document}
