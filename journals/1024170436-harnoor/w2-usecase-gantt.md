@@ -1,10 +1,7 @@
 # 🚀 Week 2: UML Use Case Diagram & Gantt Chart
 
-**Date:** August 21 – August 27, 2026 
-**Name:** Harnoor Kaur Dran  
-**Roll No.:** 1024170436  
-**Core Task:** Analyzed the project requirements, identified user-side use cases, and contributed to the UML Use Case Diagram and Gantt Chart.
-
+**📅 Date:** August 21 – August 27, 2026  
+**🎯 Core Task:** Analyzed the project requirements, identified user-side use cases, and contributed to the UML Use Case Diagram and Gantt Chart.
 ---
 
 ### 🛠️ Key Contributions & Decisions

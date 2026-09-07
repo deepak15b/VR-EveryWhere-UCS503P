@@ -1,9 +1,9 @@
 # 🚀 Week 1: Project Exploration & Project Proposal
 
-**Date:** August 21 – August 27, 2026 
-**Name:** Harnoor Kaur Dran  
-**Roll No.:** 1024170436 
-**Core Task:** Explored possible project ideas and contributed to finalizing the VR Travel Experience concept and preparing the project proposal.
+
+
+**📅 Date:** August 14 – August 20, 2026  
+**🎯 Core Task:** Explored possible project ideas and contributed to finalizing the VR Travel Experience concept and preparing the project proposal
 
 ---
 
