@@ -1,4 +1,4 @@
-# 📘 Work Journal: Abishek Garg
+# 📘 Work Journal: Abhishek Garg
 
 - **🆔 Roll Number:** 1024170428
 - **🚀 Project:** VR Travel Experience
