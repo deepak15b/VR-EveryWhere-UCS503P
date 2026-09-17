@@ -1,36 +1,65 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { api } from '../services/api';
+import { useAuth } from './AuthContext';
 
 const FavoritesContext = createContext();
+const getFavoritesKey = (userId) => `vr_user_favorites_${userId || 'anonymous'}`;
+const getTourHistoryKey = (userId) => `vr_tour_history_${userId || 'anonymous'}`;
+
+const defaultTourHistory = [
+  {
+    id: "hist-1",
+    destinationId: "taj-mahal",
+    destinationName: "Taj Mahal",
+    visitedAt: new Date(Date.now() - 3600 * 1000 * 4).toISOString(),
+    durationMinutes: 12
+  }
+];
 
 export function FavoritesProvider({ children }) {
+  const { user, isAuthenticated } = useAuth();
+
   const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem('vr_user_favorites');
+    const saved = localStorage.getItem(getFavoritesKey(user?.id));
     return saved ? JSON.parse(saved) : ["taj-mahal"]; // Taj Mahal favorited by default for demo
   });
 
   const [tourHistory, setTourHistory] = useState(() => {
-    const saved = localStorage.getItem('vr_tour_history');
-    return saved ? JSON.parse(saved) : [
-      {
-        id: "hist-1",
-        destinationId: "taj-mahal",
-        destinationName: "Taj Mahal",
-        visitedAt: new Date(Date.now() - 3600 * 1000 * 4).toISOString(),
-        durationMinutes: 12
-      }
-    ];
+    const saved = localStorage.getItem(getTourHistoryKey(user?.id));
+    return saved ? JSON.parse(saved) : defaultTourHistory;
   });
 
   useEffect(() => {
-    localStorage.setItem('vr_user_favorites', JSON.stringify(favorites));
-  }, [favorites]);
+    if (!isAuthenticated) {
+      setFavorites([]);
+      setTourHistory([]);
+      return;
+    }
+
+    const savedFavorites = localStorage.getItem(getFavoritesKey(user.id));
+    const savedTourHistory = localStorage.getItem(getTourHistoryKey(user.id));
+
+    setFavorites(savedFavorites ? JSON.parse(savedFavorites) : ["taj-mahal"]);
+    setTourHistory(savedTourHistory ? JSON.parse(savedTourHistory) : defaultTourHistory);
+  }, [isAuthenticated, user?.id]);
 
   useEffect(() => {
-    localStorage.setItem('vr_tour_history', JSON.stringify(tourHistory));
-  }, [tourHistory]);
+    if (isAuthenticated && user?.id) {
+      localStorage.setItem(getFavoritesKey(user.id), JSON.stringify(favorites));
+    }
+  }, [favorites, isAuthenticated, user?.id]);
+
+  useEffect(() => {
+    if (isAuthenticated && user?.id) {
+      localStorage.setItem(getTourHistoryKey(user.id), JSON.stringify(tourHistory));
+    }
+  }, [tourHistory, isAuthenticated, user?.id]);
 
   const toggleFavorite = async (destinationId) => {
+    if (!isAuthenticated) {
+      return;
+    }
+
     const isFav = favorites.includes(destinationId);
     let nextFavorites;
     if (isFav) {
