@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { api } from '../services/api';
+import { authService } from '../services/authService';
 
 const AuthContext = createContext();
 
@@ -21,7 +22,8 @@ export function AuthProvider({ children }) {
   const login = async (username, password) => {
     setLoading(true);
     try {
-      const res = await api.login(username, password);
+      const res = await authService.login(username, password);
+      api.setToken(res.token);
       setUser(res.user);
       return res.user;
     } finally {
@@ -46,7 +48,8 @@ export function AuthProvider({ children }) {
   const register = async (userData) => {
     setLoading(true);
     try {
-      const res = await api.register(userData);
+      const res = await authService.register(userData);
+      api.setToken(res.token);
       setUser(res.user);
       return res.user;
     } finally {

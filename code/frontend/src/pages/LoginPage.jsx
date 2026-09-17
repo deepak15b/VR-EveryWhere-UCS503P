@@ -70,10 +70,11 @@ export default function LoginPage() {
           {isRegister && (
             <>
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Full Name</label>
+                <label htmlFor="login-name" className="block text-xs font-medium text-slate-300 mb-1">Full Name</label>
                 <div className="relative">
                   <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                   <input
+                    id="login-name"
                     type="text"
                     required
                     value={name}
@@ -85,10 +86,11 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Email Address</label>
+                <label htmlFor="login-email" className="block text-xs font-medium text-slate-300 mb-1">Email Address</label>
                 <div className="relative">
                   <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                   <input
+                    id="login-email"
                     type="email"
                     required
                     value={email}
@@ -102,10 +104,11 @@ export default function LoginPage() {
           )}
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Username</label>
+            <label htmlFor="login-username" className="block text-xs font-medium text-slate-300 mb-1">Username</label>
             <div className="relative">
               <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
               <input
+                id="login-username"
                 type="text"
                 required
                 value={username}
@@ -117,10 +120,11 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Password</label>
+            <label htmlFor="login-password" className="block text-xs font-medium text-slate-300 mb-1">Password</label>
             <div className="relative">
               <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
               <input
+                id="login-password"
                 type="password"
                 required
                 value={password}
@@ -167,5 +171,5 @@ export default function LoginPage() {
 
       </div>
     </div>
-  );
+  )
 }

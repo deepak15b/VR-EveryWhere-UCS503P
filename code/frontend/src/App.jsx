@@ -10,6 +10,7 @@ import VRTourPage from './pages/VRTourPage';
 import FavoritesPage from './pages/FavoritesPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
   const location = useLocation();
@@ -27,8 +28,22 @@ export default function App() {
           <Route path="/tours" element={<VRToursCatalogPage />} />
           <Route path="/destination/:id" element={<DestinationDetailPage />} />
           <Route path="/tour/:id" element={<VRTourPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <FavoritesPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
