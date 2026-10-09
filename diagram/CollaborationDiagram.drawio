@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="N3f7WZdISE9H_FbX-3kH">
+    <mxGraphModel dx="900" dy="485" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nrpRJAKcFmUFMo6LtlI--2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Actor" vertex="1">
+          <mxGeometry height="60" width="30" x="670" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="210" as="sourcePoint" />
+            <mxPoint x="280" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="User" vertex="1">
+          <mxGeometry height="120" width="70" x="40" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710" y="210" as="sourcePoint" />
+            <mxPoint x="520" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="746" y="300" as="sourcePoint" />
+            <mxPoint x="746" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-5" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Backend" vertex="1">
+          <mxGeometry height="120" width="70" x="711" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-6" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="220" as="sourcePoint" />
+            <mxPoint x="120" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-7" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="530" y="220" as="sourcePoint" />
+            <mxPoint x="710" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Vr Everywhere&lt;/font&gt;&lt;div&gt;&lt;font&gt;(Unity vr client)&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font&gt;Handles UI, Vr environment , navigation, hotspots,audio , favourites and profile&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="220" x="290" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="1.Login/ Register&lt;div&gt;5.Search Destination&lt;/div&gt;&lt;div&gt;9.Select Destination&lt;/div&gt;&lt;div&gt;13.Save to favourites&lt;/div&gt;&lt;div&gt;15.Logout&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="120" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="2.Authenticate user&lt;div&gt;6.Request destination data&lt;/div&gt;&lt;div&gt;10.Send user action(tour progress)&amp;nbsp;&lt;/div&gt;&lt;div&gt;13.Save favourite /update profile&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="520" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="4.Show home/explore UI&lt;div&gt;8.Show destination details&lt;/div&gt;&lt;div&gt;12.Start VR tour&lt;/div&gt;&lt;div&gt;14.Confirm saved&lt;/div&gt;&lt;div&gt;16.Session ended&lt;/div&gt;" vertex="1">
+          <mxGeometry height="94" width="160" x="130" y="236" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="3.Return authentication result&lt;div&gt;7.return destination data&lt;/div&gt;&lt;div&gt;11.return tour data&amp;nbsp;&lt;/div&gt;&lt;div&gt;14.return update confirmation&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="530" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-13" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="739" y="410" as="sourcePoint" />
+            <mxPoint x="739" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-14" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Database&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="50" x="714" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="7.return data(query results)&amp;nbsp;&lt;div&gt;14.write confirmation&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="540" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="7TdiN_V-3t8uBB2OY4s0-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="6.query/read data&amp;nbsp;&lt;div&gt;13.insert/update data&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="136" x="764" y="310" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
