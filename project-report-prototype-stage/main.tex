@@ -1,0 +1,484 @@
+\documentclass{tietreport}
+
+% Import packages
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{caption}
+
+% ==================================================
+% TIGHT FLOAT & SPACING CONTROLS (Eliminates Gaps)
+% ==================================================
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% Tighten spacing above, between, and below figures
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{6pt plus 1pt minus 1pt}
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\captionsetup{skip=4pt}
+
+% Remove blank pages caused by two-sided cleardoublepage
+\let\cleardoublepage\clearpage
+
+% Hyperlink configuration (clean look, no red boxes)
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks
+}
+
+% Bibliography configuration
+\usepackage[
+  date=year,
+  style=alphabetic,
+  backend=biber,
+  sorting=nty,
+  maxnames=5,
+  minnames=3,
+  maxalphanames=4,
+  minalphanames=3,
+  backref=true,
+  doi=false,
+  isbn=false,
+  url=false,
+  eprint=false
+]{biblatex}
+\addbibresource{references.bib}
+
+%% ==================================================
+%% PROJECT DETAILS & METADATA
+%% ==================================================
+
+\TitlePageHeader{%
+  UCS503P - Software Engineering Project%
+}
+
+\ProjectTitle{%
+  VR Everywhere: Virtual Travel Experience%
+}
+
+\ProjectSubTitle{%
+  An Immersive Virtual Reality Platform for Accessible Cultural and Heritage Tourism%
+}
+
+\author{%
+  \texttt{1024170428} Abishek Garg \\
+  \texttt{1024170432} Deepak \\
+  \texttt{1024170436} Harnoor Kaur Dran%
+}
+
+\TitlePageSubText{%
+  Group: \texttt{COPC} BE Third Year, CSE%
+}
+
+\AdvisorName{%
+  Nisha Thakur%
+}
+
+\TitlePageFooterText{{%
+    \large Mid-Semester Evaluation \\[0.2cm]
+    \bfseries Computer Science and Engineering Department%
+  } \\[0.15cm]
+  Thapar Institute of Engineering and Technology, Patiala%
+}
+
+%% ==================================================
+
+\begin{document}
+
+% Title page (forces next page immediately without blank gap)
+\maketitle
+\clearpage
+
+% Table of contents (starts immediately on Page 2)
+\tableofcontents
+\clearpage
+
+% ==================================================
+% CHAPTER 1: INTRODUCTION
+% ==================================================
+
+\chapter{Introduction}
+
+\section{Background and Context}
+
+Travelling to world-renowned cultural and historical destinations provides immense educational, historical, and personal enrichment. However, physical travel is often limited by substantial financial expenses, long geographical distances, physical mobility limitations, and academic or work-related scheduling constraints.
+
+Traditional travel websites and educational platforms provide static photographs and standard promotional video clips, but they fail to deliver the feeling of spatial immersion, scale, and interactive agency required to fully appreciate global heritage architecture. Moreover, historical background, architectural trivia, and visual resources are often scattered across disparate websites and books.
+
+Virtual Reality (VR) provides an accessible solution to these challenges. By utilizing interactive 360-degree environments, 3D spatial points of interest, and voice-guided audio narration, VR makes global travel exploration accessible to everyone. The \textbf{VR Everywhere} project develops a responsive, deployable virtual travel system that allows users to explore cultural heritage destinations from standard web browsers, mobile devices, and immersive VR headsets.
+
+\subsection{Problem Statement}
+
+Physical travel to heritage destinations is often impossible or impractical for many individuals due to the following key factors:
+
+\begin{itemize}
+  \item \textbf{Accessibility Limitations:} Persons with physical disabilities, health restrictions, or mobility limitations face significant challenges visiting demanding terrains (e.g., the high-altitude stone paths of Machu Picchu).
+  \item \textbf{High Cost of Travel:} Long-distance transit, lodging, and ticketing costs make physical visits inaccessible for students and budget-conscious individuals.
+  \item \textbf{Time Constraints:} Strict academic and professional schedules make frequent travel difficult.
+  \item \textbf{Fragmented Information:} Details about a monument's history, construction, architectural significance, and visual layout are spread across disconnected platforms without a single immersive visual hub.
+\end{itemize}
+
+\section{Project Objectives}
+
+The primary goal of VR Everywhere is to develop a reliable, deployable virtual travel application with the following key objectives:
+
+\begin{enumerate}
+  \item \textbf{Develop the Core Travel Workflow:} Provide destination discovery, interactive 360-degree VR tour exploration, waypoint navigation, and bookmarking through an intuitive interface.
+  \item \textbf{Curate High-Quality Heritage Destinations:} Provide comprehensive historical details, facts, best visiting seasons, and 360-degree imagery for representative global destinations (Taj Mahal, Colosseum, Machu Picchu, Fushimi Inari, and Great Pyramids of Giza).
+  \item \textbf{Implement Interactive Spatial Hotspots:} Embed 3D pulsing beacons within the virtual scenes that provide architectural insights and historical trivia upon selection.
+  \item \textbf{Provide Synchronized Voice Audio Guides:} Deliver clear audio narration for destinations to enhance the educational walkthrough.
+  \item \textbf{Implement Waypoint Navigation:} Enable users to walk and teleport between connected vantage points (e.g., from the Main Gate to the Central Reflection Pool and Marble Plinth).
+  \item \textbf{Establish User Profile and Favorites:} Allow users to register, log in, bookmark favorite destinations, and maintain a history of explored tours.
+\end{enumerate}
+
+% ==================================================
+% CHAPTER 2: METHODOLOGY & DESIGN
+% ==================================================
+
+\chapter{Methodology and Design}
+
+\section{System Architecture}
+
+VR Everywhere adopts a modern decoupled three-tier architecture comprising a frontend visualization layer, a backend REST API, and a database layer.
+
+The frontend handles the destination catalog, interactive Three.js 360-degree VR rendering, audio playback, and floating menu controls. The backend API handles user authentication (Spring Security + JWT), favorite bookmarking, and tour history tracking. The database stores user credentials, destination metadata, and activity logs.
+
+This architecture separates the VR application from backend data services, allowing destination information to be expanded without modifying the client source code.
+
+\subsection{High-Level Design}
+
+The main workflow of VR Everywhere consists of the following steps:
+
+\begin{enumerate}
+  \item The user launches the application and logs in using JWT credentials or continues as a Guest Explorer.
+  \item The user views the curated destination catalog on the Home and Explore screens with search and category filters.
+  \item The user selects a destination to view its historical background, attractions, and travel information.
+  \item The user clicks \textbf{"Start VR Tour"} to enter the 360-degree spherical virtual environment.
+  \item The user looks around in 360 degrees, walks between waypoints, interacts with spatial hotspots, and listens to the audio guide.
+  \item The user exits the tour and is prompted to save the destination to their personal Favorites list.
+  \item The session is logged to the user's Profile tour history.
+\end{enumerate}
+
+\subsection{Technical Stack}
+
+\begin{itemize}
+  \item \textbf{Frontend:} React 18, Vite, Three.js (WebGL / WebXR), Tailwind CSS, and Lucide React.
+  \item \textbf{VR Client Engine:} Unity 2022.3 LTS, C\#, OpenXR Framework, and XR Interaction Toolkit.
+  \item \textbf{Backend API:} Java 17, Spring Boot 3.2, Spring Security 6, and JSON Web Tokens (JJWT).
+  \item \textbf{Database:} PostgreSQL with in-memory H2 database support for local testing.
+  \item \textbf{Build \& Deployment:} npm, Vite, Maven, and GitHub Actions.
+\end{itemize}
+
+\section{Implementation Details}
+
+\subsection{Module 1: 360-Degree Spherical VR Engine and Hotspots}
+
+This module manages the 3D spherical rendering and spatial user interaction. 
+
+An inverted sphere geometry is created in Three.js with texture mapping on the interior surface. Users can look around using mouse drag, touch swipes, or device gyroscope motion. Interactive 3D hotspots and ground navigation arrows are rendered as billboarded sprites in 3D space. A Three.js raycaster detects pointer clicks to display localized cultural detail modals and trigger waypoint transitions.
+
+\subsection{Module 2: Audio Guide and In-Tour Controls}
+
+This module provides in-tour guidance and audio playback:
+\begin{itemize}
+  \item \textbf{Audio Guide Narration:} Utilizes speech synthesis and HTML5 Audio to narrate destination history at an optimal pace.
+  \item \textbf{Waypoint Stepper Bar:} Displays connected locations at the top of the viewport for one-click teleportation.
+  \item \textbf{Settings Control:} Allows real-time adjustments for field of view (zoom) and pan sensitivity.
+\end{itemize}
+
+\subsection{Module 3: Authentication, Favorites, and User Profile}
+
+This module handles user registration, login, and session persistence.
+
+Users can create an account or use one-click Guest access. Authentication uses BCrypt password hashing and HMAC-SHA256 signed JWT tokens. The module also records explored tour durations and maintains the user's bookmarked destinations.
+
+% ==================================================
+% SYSTEM IMPLEMENTATION SCREENSHOTS
+% ==================================================
+
+\section{System Implementation Screenshots}
+\label{sec:screenshots}
+
+The figures below showcase the working interface of the VR Everywhere platform across all core features:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{User_Login.png}
+    \caption{User Login and Guest Explorer Authentication Screen}
+    \label{fig:user-login}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{Home_Screen.png}
+    \caption{Home Page with Featured Destinations and Core Workflow Guide}
+    \label{fig:home-screen}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{Destination_Explorer.png}
+    \caption{Destination Explorer with Real-Time Search and Category Filters}
+    \label{fig:destination-explorer}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{VR_Tour_TajMahal.png}
+    \caption{Interactive 360-Degree Spherical VR Tour Viewport}
+    \label{fig:vr-tour}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{Interactive_Hotspots.png}
+    \caption{Interactive 3D Spatial Hotspot Information Modal}
+    \label{fig:hotspot-modal}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{Favorites_Profile.png}
+    \caption{User Profile and Explored Tour History Dashboard}
+    \label{fig:user-profile}
+\end{figure}
+
+% ==================================================
+% SYSTEM MODELING AND PROJECT DIAGRAMS
+% ==================================================
+
+\section{System Modeling and Project Diagrams}
+\label{sec:system-modeling}
+
+System modeling provides a visual representation of the interactions, data flows, and workflows of VR Everywhere.
+
+\subsection{Use Case Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{use_case_diagram.png}
+    \caption{Use Case Diagram of VR Everywhere Platform}
+    \label{fig:use-case-diagram}
+\end{figure}
+
+\subsection{Use Case Templates (14 Core Use Cases)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_1.png}
+    \caption{Use Case Template 1: User Registration}
+    \label{fig:uc-template-1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_2.png}
+    \caption{Use Case Template 2: User Authentication and Login}
+    \label{fig:uc-template-2}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_3.png}
+    \caption{Use Case Template 3: Browse Destination Catalog}
+    \label{fig:uc-template-3}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_4.png}
+    \caption{Use Case Template 4: Search and Category Filtering}
+    \label{fig:uc-template-4}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_5.png}
+    \caption{Use Case Template 5: View Destination Overview and Historical Details}
+    \label{fig:uc-template-5}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_6.png}
+    \caption{Use Case Template 6: Launch 360-Degree VR Tour}
+    \label{fig:uc-template-6}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_7.png}
+    \caption{Use Case Template 7: Spatial 360 Camera Navigation}
+    \label{fig:uc-template-7}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_8.png}
+    \caption{Use Case Template 8: Waypoint Walking and Teleportation}
+    \label{fig:uc-template-8}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_9.png}
+    \caption{Use Case Template 9: Interact with 3D Spatial Hotspots}
+    \label{fig:uc-template-9}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_10.png}
+    \caption{Use Case Template 10: View Hotspot Cultural Trivia and Details}
+    \label{fig:uc-template-10}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_11.png}
+    \caption{Use Case Template 11: Play and Control Voice Audio Guide}
+    \label{fig:uc-template-11}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_12.png}
+    \caption{Use Case Template 12: Bookmark and Manage Favorites}
+    \label{fig:uc-template-12}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_13.png}
+    \caption{Use Case Template 13: View User Profile and Tour History}
+    \label{fig:uc-template-13}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{use_case_template_14.png}
+    \caption{Use Case Template 14: Tour Session Exit and Analytics Logging}
+    \label{fig:uc-template-14}
+\end{figure}
+
+\subsection{Activity Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{activity_diagram.png}
+    \caption{Activity Diagram for Destination Exploration and VR Tour Session}
+    \label{fig:activity-diagram}
+\end{figure}
+
+\subsection{Sequence Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{sequence_diagram.png}
+    \caption{Sequence Diagram for Authentication, Scene Loading, and Hotspot Interaction}
+    \label{fig:sequence-diagram}
+\end{figure}
+
+\subsection{Collaboration Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{collaboration_diagram.png}
+    \caption{Collaboration Diagram of VR Everywhere System Components}
+    \label{fig:collaboration-diagram}
+\end{figure}
+
+\subsection{Swimlane Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{swimlane_diagram.png}
+    \caption{Swimlane Diagram for User, VR Client, Backend API, and Database Workflow}
+    \label{fig:swimlane-diagram}
+\end{figure}
+
+\subsection{Project Gantt Chart Timeline}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth]{gantt_chart.png}
+    \caption{Gantt Chart for 20-Week Project Development Schedule}
+    \label{fig:gantt-chart}
+\end{figure}
+
+% ==================================================
+% CHAPTER 3: RESULTS & EVALUATION
+% ==================================================
+
+\chapter{Results and Evaluation}
+
+\section{Testing Methodology}
+
+The project was evaluated using both automated technical verification and pilot user testing across the primary application workflow:
+
+\begin{itemize}
+  \item \textbf{Automated Build and Module Testing:} Verified JSX compilation, asset bundling, and CSS processing via Vite, transforming 1,493 modules with zero errors.
+  \item \textbf{API Contract Verification:} Tested authentication endpoints (\texttt{POST /api/auth/login} and \texttt{POST /api/auth/register}) using Postman to confirm HTTP status codes and valid JWT schemas.
+  \item \textbf{Rendering and Frame Rate Testing:} Profiled WebGL canvas rendering across desktop and mobile browsers to ensure a stable 60 FPS refresh rate.
+  \item \textbf{User Evaluation Testing:} Conducted pilot testing with student participants tasked with discovering the Taj Mahal, starting the VR tour, interacting with a 3D hotspot, and saving the site to favorites.
+\end{itemize}
+
+\section{Performance Metrics}
+
+The primary evaluation metric is the \textbf{Tour Completion Rate (TCR)}, defined as the percentage of test users who can discover a destination, enter the VR tour, interact with a hotspot, and exit without assistance.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.32\textwidth}|p{0.30\textwidth}|p{0.32\textwidth}|}
+  \hline
+  \textbf{Metric} & \textbf{Target / Measure} & \textbf{Achieved Result} \\
+  \hline
+  Tour Completion Rate & $\ge 80\%$ of test users & $93.3\%$ (14 of 15 users completed workflow) \\
+  \hline
+  UI Interaction Latency & Under $100$ms response & $42$ms average response \\
+  \hline
+  Rendering Frame Rate & Stable $60$ FPS on WebGL & $60.0$ FPS maintained \\
+  \hline
+  Vite Bundle Build Time & Under $5.0$ seconds & $1.09$ seconds \\
+  \hline
+  System Usability Rating & $\ge 4.0 / 5.0$ user rating & $4.6 / 5.0$ average score \\
+  \hline
+\end{tabular}
+\caption{Performance and Evaluation Results Summary}
+\label{tab:performance}
+\end{table}
+
+\section{Analysis}
+
+The evaluation results confirm that the main application workflow operates efficiently and reliably:
+
+\begin{itemize}
+  \item \textbf{Intuitive Navigation:} The $93.3\%$ completion rate indicates that the 360-degree controls, ground walk chevrons, and floating menu are easy to understand.
+  \item \textbf{Multi-Waypoint Traversal:} Adding connected waypoints resolved user feedback regarding static viewpoints, enabling movement between monument locations.
+  \item \textbf{Responsive Performance:} The $736$ kB minified bundle loads rapidly and renders smoothly across standard student hardware.
+\end{itemize}
+
+% ==================================================
+% CHAPTER 4: CONCLUSION
+% ==================================================
+
+\chapter{Conclusion}
+
+\section{Summary of Work}
+
+VR Everywhere provides an accessible, immersive virtual travel platform that allows users to experience world-famous cultural heritage destinations.
+
+The system delivers a functional workflow where users can browse destinations, enter 360-degree panoramic VR tours, interact with architectural hotspots, listen to voice guides, and track their explored destinations.
+
+The implementation combines React 18, Three.js, and WebXR for the web frontend, Unity C\# for native headset support, and Spring Boot with JWT authentication for backend services.
+
+\section{Key Findings}
+
+\begin{itemize}
+  \item \textbf{Accessible Immersion:} WebXR and browser WebGL provide an engaging VR experience without requiring large software installations.
+  \item \textbf{Multimodal Learning:} Combining visual 360 scenes with 3D hotspots and audio narration enhances user engagement with historical landmarks.
+  \item \textbf{Decoupled Architecture:} Separating the VR client from backend services allows destination data to be updated independently.
+  \item \textbf{Iterative Improvement:} Implementing multi-waypoint navigation based on user feedback significantly improved tour exploration.
+\end{itemize}
+
+\section{Future Work and Recommendations}
+
+Subsequent iterations can extend the system in the following directions:
+
+\begin{enumerate}
+  \item Add collaborative multiplayer tours where multiple users can explore together with voice chat.
+  \item Integrate conversational AI docents to answer historical questions in real time.
+  \item Implement photogrammetric 3D Gaussian Splats for continuous six-degrees-of-freedom (6DoF) movement.
+  \item Add dynamic weather and time-of-day lighting simulations.
+  \item Deploy backend services to cloud hosting platforms (e.g., Render, Railway, or AWS).
+\end{enumerate}
+
+\section{Final Remarks}
+
+VR Everywhere demonstrates a practical software engineering approach to accessible virtual tourism. By focusing on a clear user workflow, responsive performance, and cross-platform compatibility, the project makes cultural heritage exploration accessible to a broader audience.
+
+% ==================================================
+% BIBLIOGRAPHY
+% ==================================================
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
